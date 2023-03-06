@@ -1,6 +1,8 @@
+vector<ll>v[N];
+ll capacity[N][N];
 ll bfs(ll s,ll t,vector<ll>&par)
 {
-    mem(par,-1);
+    fill(par.begin(),par.end(),-1);
     par[s]=-2;
     queue<pair<ll,ll> >q;
     q.push({s,1e18});
@@ -25,6 +27,7 @@ ll bfs(ll s,ll t,vector<ll>&par)
     }
     return 0;
 }
+ll n;
 ll maxflow(ll s,ll t)
 {
     ll flow=0;
@@ -46,15 +49,15 @@ ll maxflow(ll s,ll t)
 }
 void solve()
 {
-    ll n,i,m,a,b,s,t;
+    ll i,m,a,b,s,t,c;
     cin>>n>>m;
     for(i=0;i<m;i++)
     {
         cin>>a>>b>>c;
         v[a].push_back(b);
         v[b].push_back(a);
-        capacity[a][b]=c;
+        capacity[a][b]+=c;
     }
-    cin>>s>>t;
+    s=1,t=n;
     cout<<maxflow(s,t);
-}
+} 
